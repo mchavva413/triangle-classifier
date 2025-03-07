@@ -1,22 +1,22 @@
 function classifyTriangle(a, b, c) {
-    if (typeof a !== 'number' || typeof b !== 'number' || typeof c !== 'number') {
-        return 'Invalid input';
+    // Check input conditions C1, C2, and C3
+    if (a < 1 || a > 200 || b < 1 || b > 200 || c < 1 || c > 200) {
+        return "Error: Input conditions C1, C2, or C3 failed.";
     }
-    if (a <= 0 || b <= 0 || c <= 0) {
-        return 'Not a triangle';
+
+    // Check conditions C4, C5, and C6 to determine if it's a valid triangle
+    if (a >= b + c || b >= a + c || c >= a + b) {
+        return "Not a Triangle";
     }
-    if (a + b <= c || a + c <= b || b + c <= a) {
-        return 'Not a triangle';
-    }
+
+    // Classification based on side equality
     if (a === b && b === c) {
-        return 'Equilateral';
+        return "Equilateral";
+    } else if (a === b || a === c || b === c) {
+        return "Isosceles";
+    } else {
+        return "Scalene";
     }
-    if (a === b || b === c || a === c) {
-        return 'Isosceles';
-    }
-    return 'Scalene';
 }
 
-// Export the function so Jest can use it
-module.exports = classifyTriangle;
-
+module.exports = classifyTriangle ;
